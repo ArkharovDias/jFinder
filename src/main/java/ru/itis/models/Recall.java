@@ -11,7 +11,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "recalls")
-@ToString
+@ToString(exclude = {"user", "company"})
 public class Recall {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

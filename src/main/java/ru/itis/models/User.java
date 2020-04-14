@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "users")
-@ToString
+@ToString(exclude = "company")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,7 +11,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "vacancies")
-@ToString
+@ToString(exclude = {"user", "company"})
 public class Vacancy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "requests")
-@ToString
+@ToString(exclude = "user")
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
