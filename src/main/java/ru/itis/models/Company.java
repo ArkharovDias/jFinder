@@ -22,7 +22,7 @@ public class Company {
     private String site;
     private String phoneNumber;
     private String information;
-    private int rating;//TODO convert to ENUM
+    private float rating;
     private int recallsCount;
     private boolean checked;
 

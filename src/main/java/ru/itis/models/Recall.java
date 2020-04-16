@@ -17,7 +17,7 @@ public class Recall {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String information;
-    private int rating;//TODO convert to ENUM
+    private float rating;
     private Date date;
     private boolean checked;
 

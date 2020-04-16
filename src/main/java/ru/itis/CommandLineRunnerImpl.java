@@ -6,12 +6,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
 import ru.itis.models.*;
 import ru.itis.repositories.*;
+import ru.itis.security.course.Course;
+import ru.itis.security.role.Role;
+import ru.itis.services.UserService;
+import ru.itis.services.UserServiceImpl;
 
 import java.util.Date;
-import java.util.List;
 
 @Configuration
 public class CommandLineRunnerImpl implements CommandLineRunner {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
@@ -32,7 +38,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
 
-        /*Company company1 = Company.builder()
+        Company company1 = Company.builder()
                 .name("Microsoft")
                 .address("New York")
                 .site("www.microsoft.com")
@@ -62,7 +68,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .login("user1")
                 .password("ggwp")
                 .name("user1")
-                .course(1)
+                .course(Course.FIRST_COURSE)
                 .phoneNumber("87770315689")
                 .vkId("vk/qwerty")
                 .telegramId("telegram/][poi")
@@ -70,14 +76,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .facebookId("facebook/wfds")
                 .addInformation("user1 is good")
                 .company(company1)
-                .role("STUDENT")
+                .role(Role.STUDENT)
                 .build();
+
 
         User user2 = User.builder()
                 .login("user2")
                 .password("ggwp")
                 .name("user2")
-                .course(2)
+                .course(Course.SECOND_COURSE)
                 .phoneNumber("87056054973")
                 .vkId("vk/jdfkjds")
                 .telegramId("telegram/ewfnftg")
@@ -85,14 +92,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .facebookId("facebook/jwefgre")
                 .addInformation("user2 is good")
                 .company(company1)
-                .role("STUDENT")
+                .role(Role.STUDENT)
                 .build();
 
         User user3 = User.builder()
                 .login("user3")
                 .password("ggwp")
                 .name("user3")
-                .course(3)
+                .course(Course.THIRD_COURSE)
                 .phoneNumber("89869074652")
                 .vkId("vk/user3")
                 .telegramId("telegram/user3")
@@ -100,7 +107,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .facebookId("facebook/user3")
                 .addInformation("user3 is good")
                 .company(company2)
-                .role("STUDENT")
+                .role(Role.MODERATOR)
                 .build();
 
         userRepository.save(user1);
@@ -188,10 +195,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .build();
 
         requestRepository.save(request1);
-        requestRepository.save(request2);*/
+        requestRepository.save(request2);
+        //System.out.println(Course.SECOND_COURSE.getValue());
 
-        Company companyFromDb = companyRepository.findOne(1L);
-        System.out.println(companyFromDb);
+
+        //List<User> users = userService.getUsersWithRoleStudent();
+        //System.out.println(users.toString());
+
+        //Company companyFromDb = companyRepository.findOne(1L);
+        //System.out.println(companyFromDb);
 
         //System.out.println(companyFromDb.getUsers().toString());
     }

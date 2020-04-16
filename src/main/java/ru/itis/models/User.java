@@ -1,6 +1,8 @@
 package ru.itis.models;
 
 import lombok.*;
+import ru.itis.security.course.Course;
+import ru.itis.security.role.Role;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,7 +21,10 @@ public class User {
     private String login;
     private String password;
     private String name;
-    private int course;//TODO convert to ENUM
+
+    @Enumerated(value = EnumType.ORDINAL)
+    private Course course;
+
     private String phoneNumber;
     private String vkId;
     private String telegramId;
@@ -27,9 +32,12 @@ public class User {
     private String facebookId;
     private String addInformation;
 
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
-    private Company company;// спросить
+    private Company company;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Recall> recalls;
@@ -39,6 +47,4 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Request> requests;
-
-    private String role;//TODO convert to ENUM
 }

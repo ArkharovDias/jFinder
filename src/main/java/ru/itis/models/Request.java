@@ -1,6 +1,7 @@
 package ru.itis.models;
 
 import lombok.*;
+import ru.itis.security.role.Role;
 
 import javax.persistence.*;
 
@@ -15,7 +16,8 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String type;//TODO convert to ENUM
+
+    private String type;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
