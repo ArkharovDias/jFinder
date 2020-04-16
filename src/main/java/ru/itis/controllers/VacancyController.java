@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.dto.vacancy.VacancyCreationDto;
 import ru.itis.dto.vacancy.VacancyDto;
+import ru.itis.models.Vacancy;
+import ru.itis.services.VacancyService;
 
 import java.util.List;
 
@@ -16,13 +18,18 @@ import java.util.List;
 @RequestMapping("vacancy")
 public class VacancyController {
 
+    @Autowired
+    private VacancyService vacancyService;
+
     /*
      * Метод возвращает список вакансий
      */
     @GetMapping("/list")
     public List<VacancyDto> getVacancies(){
-        //TODO
-        return null;
+
+        List<Vacancy> vacancies = vacancyService.findAll();
+
+        return VacancyDto.from(vacancies);
     }
 
     /*
@@ -39,8 +46,10 @@ public class VacancyController {
      */
     @GetMapping("/vacancy/{vacancy_id}")
     public VacancyDto getVacancy(@PathVariable("vacancy_id") Long id){
-        //TODO
-        return null;
+
+        Vacancy vacancy = vacancyService.findById(id);
+
+        return VacancyDto.from(vacancy);
     }
 
 

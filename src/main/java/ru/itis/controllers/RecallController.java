@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.dto.recall.RecallCreationDto;
 import ru.itis.dto.recall.RecallDto;
+import ru.itis.models.Recall;
+import ru.itis.services.RecallService;
 
 import java.util.List;
 
@@ -16,13 +18,18 @@ import java.util.List;
 @RequestMapping("recalls")
 public class RecallController {
 
+    @Autowired
+    private RecallService recallService;
+
     /*
      * Метод возвращает список отзывов
      */
     @GetMapping("/list")
     public List<RecallDto> getRecalls(){
-        //TODO
-        return null;
+
+        List<Recall> recalls = recallService.getRecalls();
+
+        return RecallDto.from(recalls);
     }
 
     /*
@@ -39,8 +46,10 @@ public class RecallController {
      */
     @GetMapping("/recall/{recall_id}")
     public RecallDto getRecall(@PathVariable("recall_id") Long id){
-        //TODO
-        return null;
+
+        Recall recall = recallService.getRecallById(id);
+
+        return RecallDto.from(recall);
     }
 
 

@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.dto.company.CompanyCreationDto;
 import ru.itis.dto.company.CompanyDto;
+import ru.itis.models.Company;
+import ru.itis.services.CompanyService;
 
 import java.util.List;
 
@@ -16,13 +18,18 @@ import java.util.List;
 @RequestMapping("companies")
 public class CompanyController {
 
+    @Autowired
+    private CompanyService companyService;
+
     /*
      * Метод возвращает список компаний
      */
     @GetMapping("/list")
     public List<CompanyDto> getCompanies(){
-        //TODO
-        return null;
+
+        List<Company> companies = companyService.findAll();
+
+        return CompanyDto.from(companies);
     }
 
     /*
@@ -39,8 +46,10 @@ public class CompanyController {
      */
     @GetMapping("/company/{company_id}")
     public CompanyDto getCompany(@PathVariable("company_id") Long id){
-        //TODO
-        return null;
+
+        Company company = companyService.findById(id);
+
+        return CompanyDto.from(company);
     }
 
 
