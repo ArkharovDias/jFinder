@@ -36,8 +36,8 @@ public class VacancyDto {
                 .id(vacancy.getId())
                 .name(vacancy.getName())
                 .information(vacancy.getInformation())
-                //.rating(vacancy.)TODO ask Rustem
-                //.recallsCount()TODO ask Rustem
+                .rating(vacancy.getCompany().getRating())
+                .recallsCount(vacancy.getCompany().getRecallsCount())
                 .salary(vacancy.getSalary())
                 .date(vacancy.getDate())
                 .company(CompanyItemDto.from(vacancy.getCompany()))
