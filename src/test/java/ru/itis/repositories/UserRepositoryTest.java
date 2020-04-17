@@ -43,7 +43,7 @@ public class UserRepositoryTest {
 
         userRepository.save(userExpected);
 
-        User userActual = userRepository.getUserByLogin("userForTest");
+        User userActual = userRepository.getUserByLogin("userForTest").get();
 
         Assert.assertEquals(userExpected, userActual);
     }
@@ -67,7 +67,7 @@ public class UserRepositoryTest {
 
         userRepository.save(userValidLogin);
 
-        User userInvalidLogin = userRepository.getUserByLogin("ergregrg");
+        User userInvalidLogin = userRepository.getUserByLogin("ergregrg").get();
 
         Assert.assertNull(userInvalidLogin);
     }

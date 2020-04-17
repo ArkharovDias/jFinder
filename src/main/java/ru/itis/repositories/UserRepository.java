@@ -6,11 +6,12 @@ import ru.itis.models.User;
 import ru.itis.security.role.Role;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("from User user where user.role = ?1")
     List<User> getUserWithRole(Role role);
 
-    User getUserByLogin(String login);
+    Optional<User> getUserByLogin(String login);
 }

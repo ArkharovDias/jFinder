@@ -3,6 +3,7 @@ package ru.itis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import ru.itis.models.*;
 import ru.itis.repositories.*;
@@ -34,9 +35,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Autowired
     private RequestRepository requestRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Transactional
     @Override
     public void run(String... strings) throws Exception {
+
+        String hashPassword = passwordEncoder.encode("ggwp");
 
         Company company1 = Company.builder()
                 .name("Microsoft")
@@ -66,7 +72,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         User user1 = User.builder()
                 .login("user1")
-                .password("ggwp")
+                .password(hashPassword)
                 .name("user1")
                 .course(Course.FIRST_COURSE)
                 .phoneNumber("87770315689")
@@ -82,7 +88,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         User user2 = User.builder()
                 .login("user2")
-                .password("ggwp")
+                .password(hashPassword)
                 .name("user2")
                 .course(Course.SECOND_COURSE)
                 .phoneNumber("87056054973")
@@ -97,7 +103,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         User user3 = User.builder()
                 .login("user3")
-                .password("ggwp")
+                .password(hashPassword)
                 .name("user3")
                 .course(Course.THIRD_COURSE)
                 .phoneNumber("89869074652")

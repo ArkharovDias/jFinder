@@ -4,16 +4,19 @@ package ru.itis.dto.auth;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /*
  * Dto приходит с клиента при логине
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginDto {
-
     private String login;
     private String password;
 }

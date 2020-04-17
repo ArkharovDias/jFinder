@@ -31,6 +31,7 @@ public class User {
     private String email;
     private String facebookId;
     private String addInformation;
+    private String refreshToken;
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
