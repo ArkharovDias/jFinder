@@ -13,5 +13,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("from User user where user.role = ?1")
     List<User> getUserWithRole(Role role);
 
+    //@Query("from User user where user.login = ?1")
     Optional<User> getUserByLogin(String login);
 }

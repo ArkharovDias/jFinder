@@ -4,8 +4,10 @@ package ru.itis.dto.company;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.models.Company;
 
 import java.util.List;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CompanyDto {
 
     private long id;

@@ -4,8 +4,10 @@ package ru.itis.dto.profile;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.dto.item.CompanyItemDto;
 import ru.itis.models.User;
 
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProfileDto {
 
     private long id;
@@ -29,7 +33,8 @@ public class ProfileDto {
     private CompanyItemDto company;
 
     public static ProfileDto from(User user){
-        return ProfileDto.builder()
+
+        ProfileDto profileDto = ProfileDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .phone(user.getPhoneNumber())
@@ -37,8 +42,13 @@ public class ProfileDto {
                 .telegram(user.getTelegramId())
                 .facebook(user.getFacebookId())
                 .additionalInformation(user.getAddInformation())
-                .company(CompanyItemDto.from(user.getCompany()))
                 .build();
+
+        if (user.getCompany() != null){
+            profileDto.setCompany(CompanyItemDto.from(user.getCompany()));
+        }
+
+        return profileDto;
     }
 
     public static List<ProfileDto> from(List<User> users){

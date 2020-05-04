@@ -4,14 +4,18 @@ package ru.itis.dto.company;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /*
  * Dto приходит с клиента при создании Компании
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CompanyCreationDto {
 
     private String name;

@@ -4,12 +4,16 @@ package ru.itis.dto.auth;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.dto.item.StudentItemDto;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthenticationDto {
 
     private StudentItemDto studentItemDto;

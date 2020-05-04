@@ -25,9 +25,9 @@ public class CompanyController {
      * Метод возвращает список компаний
      */
     @GetMapping("/list")
-    public List<CompanyDto> getCompanies(){
+    public List<CompanyDto> getCompanies(Authentication authentication){
 
-        List<Company> companies = companyService.findAll();
+        List<Company> companies = companyService.findAllCheckedCompanies();
 
         return CompanyDto.from(companies);
     }
@@ -35,10 +35,9 @@ public class CompanyController {
     /*
      * Метод возвращает список компаний с учетом {query} по имени компании
      */
-    @GetMapping("/list/{query}}")
+    @GetMapping("/list/{query}")
     public List<CompanyDto> getCompaniesByQuery(@PathVariable("query") String query){
-        //TODO
-        return null;
+        return CompanyDto.from(companyService.findAllByQuery(query));
     }
 
     /*
@@ -57,7 +56,8 @@ public class CompanyController {
      * Метод создаёт запрос на создание компании
      */
     @PostMapping("/company")
-    public void postCompany(@RequestBody CompanyCreationDto company, Authentication authentication){
-        //TODO
+    public void postCompany(@RequestBody CompanyCreationDto companyDto, Authentication authentication){
+        companyService.save(companyDto, authentication);
+
     }
 }

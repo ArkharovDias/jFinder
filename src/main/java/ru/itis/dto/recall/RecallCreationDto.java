@@ -4,8 +4,10 @@ package ru.itis.dto.recall;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.dto.item.CompanyItemDto;
 import ru.itis.dto.item.StudentItemDto;
 
@@ -14,6 +16,8 @@ import ru.itis.dto.item.StudentItemDto;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RecallCreationDto {
 
     private String information;

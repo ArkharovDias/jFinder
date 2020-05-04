@@ -4,8 +4,10 @@ package ru.itis.dto.vacancy;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.dto.item.CompanyItemDto;
 import ru.itis.dto.item.StudentItemDto;
 
@@ -16,6 +18,8 @@ import java.util.Date;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class VacancyCreationDto {
 
     private String name;

@@ -42,6 +42,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
 
+
         String hashPassword = passwordEncoder.encode("ggwp");
 
         Company company1 = Company.builder()
@@ -63,7 +64,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .information("Amaon is good")
                 .rating(4)
                 .recallsCount(0)
-                .checked(false)
+                .checked(true)
                 .build();
 
         companyRepository.save(company1);
@@ -116,10 +117,38 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .role(Role.MODERATOR)
                 .build();
 
+        User user4 = User.builder()
+                .login("user4")
+                .password(hashPassword)
+                .name("user4")
+                .course(Course.SECOND_COURSE)
+                .phoneNumber("87771236549")
+                .vkId("vk/user4")
+                .telegramId("telegram/user4")
+                .email("user4@mial.ru")
+                .facebookId("facebook/user4")
+                .addInformation("user4 is good")
+                .role(Role.STUDENT)
+                .build();
+
+        User userDecanat = User.builder()
+                .login("decanat")
+                .password(hashPassword)
+                .name("decanat")
+                .phoneNumber("87774562389")
+                .vkId("vk/decanat")
+                .telegramId("telegram/decanat")
+                .email("decanat@mail.ru")
+                .facebookId("facebook/decanat")
+                .addInformation("decanat is good")
+                .role(Role.DECANAT)
+                .build();
+
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
-
+        userRepository.save(user4);
+        userRepository.save(userDecanat);
 
 
 
@@ -148,7 +177,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .salary(40000)
                 .information("project manager")
                 .date(new Date())
-                .checked(false)
+                .checked(true)
                 .company(company2)
                 .user(user1)
                 .build();
@@ -179,7 +208,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 .information("recall3")
                 .rating(3)
                 .date(new Date())
-                .checked(false)
+                .checked(true)
                 .user(user1)
                 .company(company2)
                 .build();

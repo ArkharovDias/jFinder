@@ -27,7 +27,7 @@ public class VacancyController {
     @GetMapping("/list")
     public List<VacancyDto> getVacancies(){
 
-        List<Vacancy> vacancies = vacancyService.findAll();
+        List<Vacancy> vacancies = vacancyService.findAllCheckedVacancies();
 
         return VacancyDto.from(vacancies);
     }
@@ -35,10 +35,9 @@ public class VacancyController {
     /*
      * Метод возвращает список вакансий с учетом {query} по названию вакансии
      */
-    @GetMapping("/list/{query}}")
+    @GetMapping("/list/{query}")
     public List<VacancyDto> getVacanciesByQuery(@PathVariable("query") String query){
-        //TODO
-        return null;
+        return VacancyDto.from(vacancyService.findAllByQuery(query));
     }
 
     /*
@@ -58,6 +57,6 @@ public class VacancyController {
      */
     @PostMapping("/vacancy")
     public void postRecall(@RequestBody VacancyCreationDto vacancy, Authentication authentication){
-        //TODO
+        vacancyService.save(vacancy, authentication);
     }
 }

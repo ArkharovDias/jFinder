@@ -4,8 +4,10 @@ package ru.itis.dto.profile;
  * @group 11-602
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.dto.item.CompanyItemDto;
 
 /*
@@ -13,6 +15,8 @@ import ru.itis.dto.item.CompanyItemDto;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProfileEditingDto {
 
     private long id;

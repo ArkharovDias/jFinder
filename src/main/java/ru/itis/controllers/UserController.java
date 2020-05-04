@@ -2,6 +2,8 @@ package ru.itis.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.dto.profile.ProfileDto;
 import ru.itis.dto.profile.ProfileEditingDto;
@@ -22,7 +24,7 @@ public class UserController {
      * Метод возвращает список профилей с ролью студента
      */
     @GetMapping("/list")
-    public List<ProfileDto> getUsers(){
+    public List<ProfileDto> getUsers(Authentication authentication){
 
         List<User> userList = userService.getUsersWithRoleStudent();
 
@@ -36,8 +38,7 @@ public class UserController {
      */
     @GetMapping("/user")
     public ProfileDto getUserMyself(Authentication authentication){
-        //TODO
-        return null;
+        return ProfileDto.from(userService.findUserByAuthentication(authentication));
     }
 
     /*
@@ -58,7 +59,7 @@ public class UserController {
      */
     @PostMapping("/user")
     public void editUser(@RequestBody ProfileEditingDto profile, Authentication authentication){
-        //TODO
+        userService.editUser(profile, authentication);
     }
 
 }

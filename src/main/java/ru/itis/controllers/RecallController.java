@@ -27,7 +27,7 @@ public class RecallController {
     @GetMapping("/list")
     public List<RecallDto> getRecalls(){
 
-        List<Recall> recalls = recallService.getRecalls();
+        List<Recall> recalls = recallService.findAllCheckedRecalls();
 
         return RecallDto.from(recalls);
     }
@@ -35,10 +35,9 @@ public class RecallController {
     /*
      * Метод возвращает список отзывов с учетом {query} по имени компании
      */
-    @GetMapping("/list/{query}}")
+    @GetMapping("/list/{query}")
     public List<RecallDto> getRecallsByQuery(@PathVariable("query") String query){
-        //TODO
-        return null;
+        return RecallDto.from(recallService.getRecallsByQuery(query));
     }
 
     /*
@@ -58,6 +57,6 @@ public class RecallController {
      */
     @PostMapping("/recall")
     public void postRecall(@RequestBody RecallCreationDto recall, Authentication authentication){
-        //TODO
+        recallService.save(recall, authentication);
     }
 }
