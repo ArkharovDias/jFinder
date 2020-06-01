@@ -32,7 +32,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company findById(Long id) {
-        return companyRepository.findOne(id);
+        return companyRepository.getOne(id);
     }
 
     @Override

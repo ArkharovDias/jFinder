@@ -36,6 +36,9 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     private RequestRepository requestRepository;
 
     @Autowired
+    private RateRepository rateRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Transactional
@@ -232,6 +235,27 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         requestRepository.save(request1);
         requestRepository.save(request2);
         //System.out.println(Course.SECOND_COURSE.getValue());
+
+        RateValue rateValue1 = RateValue.builder()
+                .name("USD")
+                .rate("70")
+                .build();
+
+        RateValue rateValue2 = RateValue.builder()
+                .name("EUR")
+                .rate("79")
+                .build();
+
+        RateValue rateValue3 = RateValue.builder()
+                .name("KZT")
+                .rate("6")
+                .build();
+
+        rateRepository.save(rateValue1);
+        rateRepository.save(rateValue2);
+        rateRepository.save(rateValue3);
+
+
 
 
         //List<User> users = userService.getUsersWithRoleStudent();

@@ -1,6 +1,8 @@
 package ru.itis.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,6 +33,15 @@ public class UserController {
         List<ProfileDto> resultList = ProfileDto.from(userList);
 
         return resultList;
+    }
+
+
+    @GetMapping("/lists")
+    @ResponseBody
+    public ResponseEntity<?> getListUsers() {
+        return ResponseEntity.ok(
+                new EntityModel<>(
+                        ProfileDto.from(userService.getUserById(1L))));
     }
 
     /*

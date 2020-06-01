@@ -34,7 +34,7 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public Vacancy findById(Long id) {
-        return vacancyRepository.findOne(id);
+        return vacancyRepository.getOne(id);
     }
 
     @Override
@@ -53,9 +53,9 @@ public class VacancyServiceImpl implements VacancyService {
     @Override
     public void save(VacancyCreationDto vacancyDto, Authentication authentication) {
 
-        User user = userRepository.findOne(vacancyDto.getStudent().getId());
+        User user = userRepository.getOne(vacancyDto.getStudent().getId());
 
-        Company company = companyRepository.findOne(vacancyDto.getCompany().getId());
+        Company company = companyRepository.getOne(vacancyDto.getCompany().getId());
 
         Vacancy vacancy = Vacancy.builder()
                 .name(vacancyDto.getName())

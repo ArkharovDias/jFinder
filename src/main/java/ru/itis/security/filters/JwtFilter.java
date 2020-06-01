@@ -17,7 +17,7 @@ import java.io.IOException;
 @Component
 public class JwtFilter extends GenericFilterBean {
 
-    @Autowired
+    @Autowired(required = true)
     private AuthenticationManager authenticationManager;
 
 

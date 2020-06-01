@@ -46,15 +46,15 @@ public class RecallServiceImpl implements RecallService {
 
     @Override
     public Recall getRecallById(Long id) {
-        return recallRepository.findOne(id);
+        return recallRepository.getOne(id);
     }
 
     @Override
     public void save(RecallCreationDto recallCreationDto, Authentication authentication) {
 
-        User user = userRepository.findOne(recallCreationDto.getStudent().getId());
+        User user = userRepository.getOne(recallCreationDto.getStudent().getId());
 
-        Company company = companyRepository.findOne(recallCreationDto.getCompany().getId());
+        Company company = companyRepository.getOne(recallCreationDto.getCompany().getId());
 
         Recall recall = Recall.builder()
                 .information(recallCreationDto.getInformation())
